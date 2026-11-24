@@ -1,0 +1,700 @@
+{
+ "_sample": true,
+ "_note": "SAMPLE ONLY: demo prices in a neutral currency. Never use for a real project; ask the user for local rates first.",
+ "place": "",
+ "year": "",
+ "currency": {
+  "code": "XXX",
+  "name": "sample currency",
+  "symbol": "¤",
+  "grouping": "western",
+  "round": 100
+ },
+ "tax": "",
+ "rates": [
+  {
+   "h": "Structure (RCC frame, slabs, brick walls, plaster, foundation share)"
+  },
+  {
+   "k": "sHab",
+   "label": "Enclosed room (bed, living, kitchen, store, lobby)",
+   "unit": "per sq ft",
+   "def": 2328,
+   "basis": "Grey structure is about 55% of the ¤ 4,200–5,200 per sq ft that standard-finish houses cost; 3% less for 11'-0\" floor to floor (walls, columns, plaster)"
+  },
+  {
+   "k": "sWet",
+   "label": "Bath / toilet",
+   "unit": "per sq ft",
+   "def": 2619,
+   "basis": "extra waterproofing, sunk slab and wall chases; 3% less for 11'-0\" floor to floor (walls, columns, plaster)"
+  },
+  {
+   "k": "sStair",
+   "label": "Staircase",
+   "unit": "per sq ft",
+   "def": 2910,
+   "basis": "heavy waist slab and landings; 3% less for 11'-0\" floor to floor (walls, columns, plaster)"
+  },
+  {
+   "k": "sDeck",
+   "label": "Balcony, deck, open terrace",
+   "unit": "per sq ft",
+   "def": 1500,
+   "basis": "cantilever or roof slab, parapet"
+  },
+  {
+   "k": "sCourt",
+   "label": "Open courtyard",
+   "unit": "per sq ft",
+   "def": 600,
+   "basis": "floor, drain, plinth"
+  },
+  {
+   "h": "Floors, walls, ceilings"
+  },
+  {
+   "k": "fHab",
+   "label": "Floor: white vitrified tile 600 × 600, laid with skirting",
+   "unit": "per sq ft",
+   "def": 210,
+   "basis": "tile 130–150 supplied, laying and skirting 60"
+  },
+  {
+   "k": "fWet",
+   "label": "Floor: white anti-skid tile (P4 / R11, AS 4586) with waterproofing",
+   "unit": "per sq ft",
+   "def": 300,
+   "basis": ""
+  },
+  {
+   "k": "fDeck",
+   "label": "Floor: outdoor anti-skid tile, waterproofed",
+   "unit": "per sq ft",
+   "def": 280,
+   "basis": ""
+  },
+  {
+   "k": "fStair",
+   "label": "Stair: granite or marble treads and risers",
+   "unit": "per sq ft",
+   "def": 520,
+   "basis": ""
+  },
+  {
+   "k": "fCourt",
+   "label": "Courtyard: pebbles / cobbles",
+   "unit": "per sq ft",
+   "def": 120,
+   "basis": ""
+  },
+  {
+   "k": "wPaint",
+   "label": "Wall: putty and 2 coats emulsion, interior",
+   "unit": "per sq ft of wall",
+   "def": 36,
+   "basis": ""
+  },
+  {
+   "k": "wTile",
+   "label": "Wall tile in bath, kitchen splash back",
+   "unit": "per sq ft of wall",
+   "def": 190,
+   "basis": "tile, adhesive, grout, labour"
+  },
+  {
+   "k": "cFalse",
+   "label": "Ceiling: gypsum false ceiling with cove (bedrooms, living)",
+   "unit": "per sq ft",
+   "def": 95,
+   "basis": ""
+  },
+  {
+   "k": "cWet",
+   "label": "Ceiling: moisture-proof board in baths",
+   "unit": "per sq ft",
+   "def": 70,
+   "basis": ""
+  },
+  {
+   "k": "cPlain",
+   "label": "Ceiling: plain putty and paint",
+   "unit": "per sq ft",
+   "def": 40,
+   "basis": ""
+  },
+  {
+   "h": "Doors (all solid, no glass) and windows (aluminium frame, glass)"
+  },
+  {
+   "k": "dMain",
+   "label": "Main door: solid hardwood, frame, 2 locks",
+   "unit": "each",
+   "def": 95000,
+   "basis": ""
+  },
+  {
+   "k": "dExt",
+   "label": "Balcony / terrace / back door: solid hardwood, weather-sealed",
+   "unit": "each",
+   "def": 48000,
+   "basis": "solid leaf; light comes from an aluminium window beside it"
+  },
+  {
+   "k": "dInt",
+   "label": "Internal door: solid flush or panel, frame, hardware",
+   "unit": "each",
+   "def": 30000,
+   "basis": ""
+  },
+  {
+   "k": "dBath",
+   "label": "Bath door: waterproof flush (WPC / PVC), frame, lock",
+   "unit": "each",
+   "def": 14000,
+   "basis": ""
+  },
+  {
+   "k": "wAlu",
+   "label": "Aluminium window inside (courtyard, light well): powder-coated frame, 5 mm normal glass; laminated lower pane below 800 mm",
+   "unit": "per sq ft",
+   "def": 900,
+   "basis": "dealer price plus fitting"
+  },
+  {
+   "k": "wFix",
+   "label": "Fixed full-height glazing, aluminium frame, 8 mm toughened",
+   "unit": "per sq ft",
+   "def": 1150,
+   "basis": ""
+  },
+  {
+   "k": "wSlide",
+   "label": "Aluminium sliding glass door, 8 mm toughened, mesh shutter",
+   "unit": "per sq ft",
+   "def": 1150,
+   "basis": "replaces the solid balcony doors, as drawn in the plan"
+  },
+  {
+   "k": "wTilt",
+   "label": "Openable tilt-and-turn aluminium glazing (light well side)",
+   "unit": "per sq ft",
+   "def": 1400,
+   "basis": "so the panes can be opened for air and cleaned from inside"
+  },
+  {
+   "h": "Electrical (supply and fit, per point, with accessories and fixture)"
+  },
+  {
+   "k": "eL",
+   "label": "Light point (LED)",
+   "unit": "each",
+   "def": 2800,
+   "basis": ""
+  },
+  {
+   "k": "eF",
+   "label": "Ceiling fan point with fan",
+   "unit": "each",
+   "def": 6500,
+   "basis": ""
+  },
+  {
+   "k": "eS5",
+   "label": "10A double socket (universal), 2.5 mm² wiring",
+   "unit": "each",
+   "def": 2700,
+   "basis": "10A minimum; universal type takes local plugs"
+  },
+  {
+   "k": "eS15",
+   "label": "15A / 20A socket or point",
+   "unit": "each",
+   "def": 2900,
+   "basis": ""
+  },
+  {
+   "k": "eAC",
+   "label": "AC point (4 mm wiring, MCB)",
+   "unit": "each",
+   "def": 5500,
+   "basis": ""
+  },
+  {
+   "k": "eEx",
+   "label": "Exhaust fan 100 mm with duct share",
+   "unit": "each",
+   "def": 5200,
+   "basis": ""
+  },
+  {
+   "k": "eOther",
+   "label": "TV / data, geyser, chimney, mirror, outdoor light",
+   "unit": "each",
+   "def": 3600,
+   "basis": ""
+  },
+  {
+   "k": "eSB",
+   "label": "Switchboard with MCBs, per room",
+   "unit": "each",
+   "def": 2200,
+   "basis": ""
+  },
+  {
+   "h": "Plumbing and sanitary (fixture, taps, concealed pipework)"
+  },
+  {
+   "k": "pWC",
+   "label": "WC with cistern, seat, health faucet",
+   "unit": "each",
+   "def": 17000,
+   "basis": ""
+  },
+  {
+   "k": "pBasin",
+   "label": "Basin with tap and waste (vanity extra)",
+   "unit": "each",
+   "def": 11000,
+   "basis": ""
+  },
+  {
+   "k": "pShower",
+   "label": "Shower set, concealed mixer, hand shower",
+   "unit": "each",
+   "def": 15500,
+   "basis": ""
+  },
+  {
+   "k": "pScreen",
+   "label": "Shower screen, aluminium-framed glass",
+   "unit": "per sq ft",
+   "def": 1100,
+   "basis": ""
+  },
+  {
+   "k": "pTub",
+   "label": "Bathtub, acrylic, with mixer",
+   "unit": "each",
+   "def": 62000,
+   "basis": ""
+  },
+  {
+   "k": "pSink",
+   "label": "Kitchen sink with tap",
+   "unit": "each",
+   "def": 14000,
+   "basis": ""
+  },
+  {
+   "k": "pWM",
+   "label": "Washing machine point (supply and waste)",
+   "unit": "each",
+   "def": 4500,
+   "basis": ""
+  },
+  {
+   "h": "Fittings, built-ins and equipment"
+  },
+  {
+   "k": "bWard",
+   "label": "Wardrobe: laminated ply, soft-close, floor to ceiling",
+   "unit": "per sq ft of face",
+   "def": 1900,
+   "basis": ""
+  },
+  {
+   "k": "bShelf",
+   "label": "Open shelves / bookshelf",
+   "unit": "per sq ft of face",
+   "def": 1100,
+   "basis": ""
+  },
+  {
+   "k": "bCounter",
+   "label": "Kitchen base units with granite top",
+   "unit": "per running ft",
+   "def": 14000,
+   "basis": ""
+  },
+  {
+   "k": "bWall",
+   "label": "Kitchen wall cabinets",
+   "unit": "per running ft",
+   "def": 9500,
+   "basis": ""
+  },
+  {
+   "k": "bCab",
+   "label": "Crockery / other cabinet",
+   "unit": "per running ft",
+   "def": 9000,
+   "basis": ""
+  },
+  {
+   "k": "bHob",
+   "label": "Hob and chimney (set)",
+   "unit": "each",
+   "def": 45000,
+   "basis": ""
+  },
+  {
+   "k": "aAC15",
+   "label": "Split AC 1.5 ton inverter, installed",
+   "unit": "each",
+   "def": 78000,
+   "basis": ""
+  },
+  {
+   "k": "aAC20",
+   "label": "Split AC 2.0 ton inverter, installed",
+   "unit": "each",
+   "def": 105000,
+   "basis": ""
+  },
+  {
+   "k": "bRailDeck",
+   "label": "Balcony railing, powder-coated MS",
+   "unit": "per running ft",
+   "def": 3800,
+   "basis": ""
+  },
+  {
+   "k": "bRailStair",
+   "label": "Stair railing, powder-coated MS with wooden handrail",
+   "unit": "per running ft",
+   "def": 3200,
+   "basis": ""
+  },
+  {
+   "k": "bGlassRoof",
+   "label": "Opal polycarbonate roof, 10 mm multiwall UV-coated, on steel frame (stair and walkway)",
+   "unit": "per sq ft",
+   "def": 450,
+   "basis": "diffused light, much lighter and cheaper than laminated glass"
+  },
+  {
+   "k": "bSky",
+   "label": "Skylight over the light well: laminated glass, aluminium frame, louvres",
+   "unit": "per sq ft",
+   "def": 1900,
+   "basis": ""
+  },
+  {
+   "k": "bRoof",
+   "label": "Roof treatment: 75 mm XPS, screed, waterproofing, white tiles",
+   "unit": "per sq ft",
+   "def": 620,
+   "basis": ""
+  },
+  {
+   "k": "bCanopy",
+   "label": "Solar canopy steel frame over the sunroom",
+   "unit": "per sq ft",
+   "def": 950,
+   "basis": ""
+  },
+  {
+   "k": "bLouvre",
+   "label": "Louvred upstand with fine mesh (skylight, stair roof)",
+   "unit": "per sq ft",
+   "def": 1100,
+   "basis": ""
+  },
+  {
+   "k": "pGeyser",
+   "label": "Geyser 25 L, installed",
+   "unit": "each",
+   "def": 18000,
+   "basis": ""
+  },
+  {
+   "k": "pVanS",
+   "label": "Slimline wall-hung vanity 450 × 250 mm with compact basin",
+   "unit": "each",
+   "def": 16000,
+   "basis": ""
+  },
+  {
+   "k": "pVan6",
+   "label": "Wall-hung vanity 600 × 460 mm",
+   "unit": "each",
+   "def": 22000,
+   "basis": "cabinet only; basin counted separately"
+  },
+  {
+   "k": "pVan9",
+   "label": "Wall-hung vanity 900 × 460 mm with drawers",
+   "unit": "each",
+   "def": 30000,
+   "basis": "cabinet only; basin counted separately"
+  },
+  {
+   "k": "pMirC",
+   "label": "Mirror cabinet 600 × 750 mm",
+   "unit": "each",
+   "def": 9000,
+   "basis": ""
+  },
+  {
+   "k": "pTMV",
+   "label": "Tempering valve (50°C), installed",
+   "unit": "each",
+   "def": 14000,
+   "basis": "AS/NZS 3500.4"
+  },
+  {
+   "k": "eSA",
+   "label": "Smoke alarm, 230 V, interconnected, battery backup",
+   "unit": "each",
+   "def": 6500,
+   "basis": "AS 3786"
+  },
+  {
+   "k": "bWP",
+   "label": "Wet-area waterproofing to AS 3740 (membrane, upturns, shower walls to 1.8 m)",
+   "unit": "per sq ft of floor",
+   "def": 220,
+   "basis": "on top of the tiled floor already counted"
+  },
+  {
+   "k": "fParq",
+   "label": "Floor: wood-look porcelain plank tile 200 × 1200 (matt, R10), with skirting",
+   "unit": "per sq ft",
+   "def": 240,
+   "basis": "looks like timber; termite- and humidity-proof"
+  },
+  {
+   "k": "fBlack",
+   "label": "Floor: black matt porcelain tile 600 × 600, with skirting",
+   "unit": "per sq ft",
+   "def": 260,
+   "basis": "matt R10 finish; hides little dust, so choose a mid-charcoal if unsure"
+  },
+  {
+   "k": "wAluT",
+   "label": "Aluminium window, outer wall: powder-coated frame, 6 mm toughened glass, mesh",
+   "unit": "per sq ft",
+   "def": 1150,
+   "basis": "outer walls: toughened"
+  },
+  {
+   "k": "wW1",
+   "label": "W1 window, outer wall (living + bedrooms): 2-track powder-coated aluminium/uPVC, fixed laminated fanlight on top, one fixed + one sliding 6 mm toughened pane (Grade A, sill under 500 mm), fixed fibreglass insect mesh, keyed sash stop at 125 mm on upper-floor bedrooms",
+   "unit": "per sq ft",
+   "def": 1200,
+   "basis": "slightly above a plain aluminium window for the laminated fanlight, fixed mesh and sash stop"
+  },
+  {
+   "k": "wFixN",
+   "label": "Fixed glazing inside the house, aluminium frame, 6 mm normal glass",
+   "unit": "per sq ft",
+   "def": 850,
+   "basis": "inside, above 800 mm: normal glass is fine"
+  }
+ ],
+ "pct": [
+  {
+   "k": "design",
+   "label": "Design: architect, structural, MEP drawings",
+   "def": 2.5
+  },
+  {
+   "k": "sup",
+   "label": "Site supervision engineer",
+   "def": 1.5
+  },
+  {
+   "k": "cont",
+   "label": "Contingency",
+   "def": 8
+  },
+  {
+   "k": "esc",
+   "label": "Price escalation reserve (cost index +14% in a year)",
+   "def": 6
+  }
+ ],
+ "fixed": [
+  {
+   "k": "plinth_cft",
+   "label": "Plinth filling, per cu ft",
+   "def": 55
+  },
+  {
+   "k": "entry_steps",
+   "label": "Entry steps, lump",
+   "def": 25000
+  },
+  {
+   "k": "front_wall_rft",
+   "label": "Front wall and gates, per running ft of plot width",
+   "def": 15750
+  },
+  {
+   "k": "parking_rft",
+   "label": "Parking, paths and garden, per ft of plot width",
+   "def": 11000
+  },
+  {
+   "k": "septic_person",
+   "label": "Septic tank and soak pit, per person",
+   "def": 40000
+  },
+  {
+   "k": "septic_base",
+   "label": "Septic tank, lump",
+   "def": 10000
+  },
+  {
+   "k": "ug_tank_l",
+   "label": "Underground tank with pump, per litre",
+   "def": 26
+  },
+  {
+   "k": "roof_tank",
+   "label": "Overhead 1,000 L tank and platform, each",
+   "def": 37500
+  },
+  {
+   "k": "rwh",
+   "label": "Rainwater harvesting, lump",
+   "def": 90000
+  },
+  {
+   "k": "solar_hw_l",
+   "label": "Solar water heater, per litre",
+   "def": 400
+  },
+  {
+   "k": "pv_kwp",
+   "label": "Solar PV with inverter, per kWp",
+   "def": 105000
+  },
+  {
+   "k": "battery_kwh",
+   "label": "Battery, per kWh",
+   "def": 30000
+  },
+  {
+   "k": "supply_base",
+   "label": "Main supply and meter box, lump",
+   "def": 45000
+  },
+  {
+   "k": "db_each",
+   "label": "Distribution board, per floor",
+   "def": 45000
+  },
+  {
+   "k": "ext_paint",
+   "label": "External wall paint, per sq ft",
+   "def": 42
+  },
+  {
+   "k": "approvals",
+   "label": "Building approval, permits, utility connections, lump",
+   "def": 80000
+  },
+  {
+   "k": "chajja_rft",
+   "label": "Sunshade, per running ft of outside window",
+   "def": 3500
+  },
+  {
+   "k": "boundary_ft",
+   "label": "Boundary footing, per ft per boundary wall",
+   "def": 5400
+  },
+  {
+   "k": "soil_test",
+   "label": "Soil test, lump",
+   "def": 50000
+  },
+  {
+   "k": "termite_sqft",
+   "label": "Termite treatment, per sq ft of footprint",
+   "def": 25
+  },
+  {
+   "k": "ramp",
+   "label": "Step-free entry ramp, lump",
+   "def": 135000
+  },
+  {
+   "k": "rcd_circuit",
+   "label": "RCD, surge and smoke alarm safety, per circuit",
+   "def": 10000
+  },
+  {
+   "k": "plumbing_safety",
+   "label": "Plumbing safety valves and openings, lump",
+   "def": 95000
+  },
+  {
+   "k": "pipe_box",
+   "label": "Pipe box, per stack per level",
+   "def": 8300
+  },
+  {
+   "k": "limiter",
+   "label": "Window opening limiter, each",
+   "def": 1800
+  },
+  {
+   "k": "altar",
+   "label": "Altar platform, each",
+   "def": 35000
+  },
+  {
+   "k": "parapet_rft",
+   "label": "Roof parapet 3'-6\" high, per running ft",
+   "def": 2600
+  },
+  {
+   "k": "f_sofa",
+   "label": "Sofa",
+   "def": 85000
+  },
+  {
+   "k": "f_bed",
+   "label": "Bed with mattress",
+   "def": 75000
+  },
+  {
+   "k": "f_dtable",
+   "label": "Dining table with chairs",
+   "def": 95000
+  },
+  {
+   "k": "f_table",
+   "label": "Coffee / side table",
+   "def": 25000
+  },
+  {
+   "k": "f_desk",
+   "label": "Desk and chair",
+   "def": 35000
+  },
+  {
+   "k": "f_tv",
+   "label": "TV unit (TV excluded)",
+   "def": 45000
+  },
+  {
+   "k": "f_chair",
+   "label": "Chair",
+   "def": 8000
+  },
+  {
+   "k": "f_rug",
+   "label": "Rug",
+   "def": 18000
+  },
+  {
+   "k": "f_plant",
+   "label": "Planter",
+   "def": 6000
+  }
+ ]
+}

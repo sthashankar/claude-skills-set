@@ -1,0 +1,147 @@
+{
+ "_sample": true,
+ "_note": "SAMPLE ONLY: a demo set of limits from mixed standards. For any real project make a codes file from codes_template.json.",
+ "name": "Sample code set",
+ "country": "",
+ "professionals": "locally licensed professionals",
+ "seismic": {
+  "code": "NBC 105:2020",
+  "Z": 0.3,
+  "soil": "D",
+  "I": 1.0,
+  "R_mu": 4.0,
+  "omega_u": 1.5
+ },
+ "limits": {
+  "stair_rise_mm": [
+   115,
+   190
+  ],
+  "stair_going_mm": [
+   240,
+   355
+  ],
+  "stair_2rg_mm": [
+   550,
+   700
+  ],
+  "stair_max_risers": 18,
+  "stair_width_mm": 914,
+  "entry_door_mm": 863,
+  "hab_area_m2": 9.5,
+  "hab_width_m": 2.4,
+  "hab_height_m": 2.75,
+  "kitchen_area_m2": 5,
+  "kitchen_width_m": 1.8,
+  "bath_area_m2": 1.8,
+  "bath_width_m": 1.2,
+  "wc_area_m2": 1.1,
+  "wc_width_m": 0.9,
+  "light_pct": 10,
+  "vent_pct": 5,
+  "boundary_openings_banned": true,
+  "exhaust_ls": [
+   25,
+   40
+  ],
+  "drain_run_wc_m": 2.5,
+  "drain_run_m": 3.5,
+  "drain_run_max_m": 6,
+  "drain_grade_wc": 60,
+  "drain_grade": 40,
+  "roof_m2_per_rwp": 80,
+  "wet_zone_mm": 609,
+  "hob_window_mm": 304,
+  "battery_db_mm": 609,
+  "balustrade_fall_mm": 990,
+  "balustrade_h_mm": 1000,
+  "balustrade_gap_mm": 125,
+  "restrictor_ffl_mm": 1982,
+  "restrictor_sill_mm": 1701,
+  "restrictor_gap_mm": 125,
+  "col_min_mm": 300,
+  "col_3storey_mm": 350,
+  "span_m": 4.5,
+  "span_max_m": 6,
+  "slab_mm": 125,
+  "beam_span_ratio": 12,
+  "cantilever_m": 1.0,
+  "plan_aspect": 3,
+  "soft_storey": 0.7,
+  "torsion": 0.1,
+  "diaphragm": 0.5
+ },
+ "refs": "builtin",
+ "cite": {
+  "pv": "AS/NZS 5033, 4777",
+  "battery": "AS/NZS 5139 clearances",
+  "termite": "AS 3660 physical barrier at slab edges",
+  "access": "LHD",
+  "restrictor": "NCC H5D4",
+  "wet-wall": "AS 3740 shower walls to 1.8 m",
+  "rcd": "AS/NZS 3000"
+ },
+ "estimate_note": "Best practice items (RCDs, smoke alarms, AS 3740 waterproofing, TMVs, termite barrier, step-free entry) are priced in.",
+ "standards": [
+  [
+   "NBC 105:2020",
+   "Seismic design of buildings: zone factor Z, soil type, R and Ω factors, regularity, drift"
+  ],
+  [
+   "NBC 205:2012/2024",
+   "Mandatory rules of thumb for RC buildings without an engineer (≤ 3 storeys): column ≥ 300×300 (350 common for G+2), spans ≤ 4.5 m, slab ≥ 125 mm, cantilever ≤ 1 m, detailing"
+  ],
+  [
+   "NBC 206",
+   "Architectural design requirements: minimum room sizes, heights, light and ventilation"
+  ],
+  [
+   "NBC 107 / bylaws",
+   "Fire safety; no openings on boundary walls; setbacks, ground coverage, FAR and light plane per the municipality"
+  ],
+  [
+   "NBC 208",
+   "Sanitary and plumbing: traps, vents, septic and soak pit"
+  ],
+  [
+   "NCC 2022 Vol 2 / ABCB Housing Provisions",
+   "H4 light, ventilation, heights; H5 stairs and balustrades; H6 energy; window restrictors (H5D4)"
+  ],
+  [
+   "AS/NZS 3000",
+   "Wiring rules: RCDs on every final circuit, bathroom zones, earthing, SPD"
+  ],
+  [
+   "AS/NZS 3500",
+   "Plumbing and drainage: grades, venting, backflow, TMVs at 50 °C"
+  ],
+  [
+   "AS 3740",
+   "Waterproofing of wet areas: shower floors and walls to 1.8 m, upturns, falls"
+  ],
+  [
+   "AS/NZS 5139 / 4777 / 5033",
+   "Battery systems, grid-connected inverters, PV arrays"
+  ],
+  [
+   "AS 3786",
+   "Smoke alarms: interconnected, 230 V with battery backup"
+  ],
+  [
+   "AS 3660",
+   "Termite management"
+  ],
+  [
+   "AS/NZS 5601.1",
+   "Gas installations: LPG cylinder outside, hob clearances"
+  ],
+  [
+   "AS 1428 / Livable Housing Design",
+   "Step-free entry, 820 mm clear doors, reinforced bathroom walls, WC door outward or sliding"
+  ],
+  [
+   "AS 1288 / AS 2047",
+   "Glass in buildings (Grade A safety glass in human-impact zones), windows"
+  ]
+ ]
+}

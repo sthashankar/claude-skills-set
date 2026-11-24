@@ -1,0 +1,699 @@
+{
+ "_note": "Blank rate book for any country. Copy to rates_<place>_<year>.json, fill every def the estimate asks for in your currency, put the quote or source in basis. Areas are per sq ft and lengths per running ft (per m² ÷ 10.764, per m ÷ 3.281). 0 = not applicable; null = not known, the estimate stops and lists it if the design needs it.",
+ "place": "",
+ "year": "",
+ "currency": {
+  "code": "",
+  "name": "",
+  "symbol": "",
+  "grouping": "western",
+  "round": 100
+ },
+ "tax": "",
+ "rates": [
+  {
+   "h": "Structure (RCC frame, slabs, brick walls, plaster, foundation share)"
+  },
+  {
+   "k": "sHab",
+   "label": "Enclosed room (bed, living, kitchen, store, lobby)",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "sWet",
+   "label": "Bath / toilet",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "sStair",
+   "label": "Staircase",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "sDeck",
+   "label": "Balcony, deck, open terrace",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "sCourt",
+   "label": "Open courtyard",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "h": "Floors, walls, ceilings"
+  },
+  {
+   "k": "fHab",
+   "label": "Floor: white vitrified tile 600 × 600, laid with skirting",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fWet",
+   "label": "Floor: white anti-skid tile with waterproofing",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fDeck",
+   "label": "Floor: outdoor anti-skid tile, waterproofed",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fStair",
+   "label": "Stair: granite or marble treads and risers",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fCourt",
+   "label": "Courtyard: pebbles / cobbles",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wPaint",
+   "label": "Wall: putty and 2 coats emulsion, interior",
+   "unit": "per sq ft of wall",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wTile",
+   "label": "Wall tile in bath, kitchen splash back",
+   "unit": "per sq ft of wall",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "cFalse",
+   "label": "Ceiling: gypsum false ceiling with cove (bedrooms, living)",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "cWet",
+   "label": "Ceiling: moisture-proof board in baths",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "cPlain",
+   "label": "Ceiling: plain putty and paint",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "h": "Doors (all solid, no glass) and windows (aluminium frame, glass)"
+  },
+  {
+   "k": "dMain",
+   "label": "Main door: solid hardwood, frame, 2 locks",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "dExt",
+   "label": "Balcony / terrace / back door: solid hardwood, weather-sealed",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "dInt",
+   "label": "Internal door: solid flush or panel, frame, hardware",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "dBath",
+   "label": "Bath door: waterproof flush (WPC / PVC), frame, lock",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wAlu",
+   "label": "Aluminium window inside (courtyard, light well): powder-coated frame, 5 mm normal glass; laminated lower pane below 800 mm",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wFix",
+   "label": "Fixed full-height glazing, aluminium frame, 8 mm toughened",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wSlide",
+   "label": "Aluminium sliding glass door, 8 mm toughened, mesh shutter",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wTilt",
+   "label": "Openable tilt-and-turn aluminium glazing (light well side)",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "h": "Electrical (supply and fit, per point, with accessories and fixture)"
+  },
+  {
+   "k": "eL",
+   "label": "Light point (LED)",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eF",
+   "label": "Ceiling fan point with fan",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eS5",
+   "label": "10A double socket (universal), 2.5 mm² wiring",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eS15",
+   "label": "15A / 20A socket or point",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eAC",
+   "label": "AC point (4 mm wiring, MCB)",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eEx",
+   "label": "Exhaust fan 100 mm with duct share",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eOther",
+   "label": "TV / data, geyser, chimney, mirror, outdoor light",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eSB",
+   "label": "Switchboard with MCBs, per room",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "h": "Plumbing and sanitary (fixture, taps, concealed pipework)"
+  },
+  {
+   "k": "pWC",
+   "label": "WC with cistern, seat, health faucet",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pBasin",
+   "label": "Basin with tap and waste (vanity extra)",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pShower",
+   "label": "Shower set, concealed mixer, hand shower",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pScreen",
+   "label": "Shower screen, aluminium-framed glass",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pTub",
+   "label": "Bathtub, acrylic, with mixer",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pSink",
+   "label": "Kitchen sink with tap",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pWM",
+   "label": "Washing machine point (supply and waste)",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "h": "Fittings, built-ins and equipment"
+  },
+  {
+   "k": "bWard",
+   "label": "Wardrobe: laminated ply, soft-close, floor to ceiling",
+   "unit": "per sq ft of face",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bShelf",
+   "label": "Open shelves / bookshelf",
+   "unit": "per sq ft of face",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bCounter",
+   "label": "Kitchen base units with granite top",
+   "unit": "per running ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bWall",
+   "label": "Kitchen wall cabinets",
+   "unit": "per running ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bCab",
+   "label": "Crockery / other cabinet",
+   "unit": "per running ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bHob",
+   "label": "Hob and chimney (set)",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "aAC15",
+   "label": "Split AC 1.5 ton inverter, installed",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "aAC20",
+   "label": "Split AC 2.0 ton inverter, installed",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bRailDeck",
+   "label": "Balcony railing, powder-coated MS",
+   "unit": "per running ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bRailStair",
+   "label": "Stair railing, powder-coated MS with wooden handrail",
+   "unit": "per running ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bGlassRoof",
+   "label": "Opal polycarbonate roof, 10 mm multiwall UV-coated, on steel frame (stair and walkway)",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bSky",
+   "label": "Skylight over the light well: laminated glass, aluminium frame, louvres",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bRoof",
+   "label": "Roof treatment: 75 mm XPS, screed, waterproofing, white tiles",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bCanopy",
+   "label": "Solar canopy steel frame over the sunroom",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bLouvre",
+   "label": "Louvred upstand with fine mesh (skylight, stair roof)",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pGeyser",
+   "label": "Geyser 25 L, installed",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pVanS",
+   "label": "Slimline wall-hung vanity 450 × 250 mm with compact basin",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pVan6",
+   "label": "Wall-hung vanity 600 × 460 mm",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pVan9",
+   "label": "Wall-hung vanity 900 × 460 mm with drawers",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pMirC",
+   "label": "Mirror cabinet 600 × 750 mm",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "pTMV",
+   "label": "Tempering valve (50°C), installed",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "eSA",
+   "label": "Smoke alarm, 230 V, interconnected, battery backup",
+   "unit": "each",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "bWP",
+   "label": "Wet-area waterproofing (membrane, upturns, shower walls to 1.8 m)",
+   "unit": "per sq ft of floor",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fParq",
+   "label": "Floor: wood-look porcelain plank tile 200 × 1200 (matt, R10), with skirting",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "fBlack",
+   "label": "Floor: black matt porcelain tile 600 × 600, with skirting",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wAluT",
+   "label": "Aluminium window, outer wall: powder-coated frame, 6 mm toughened glass, mesh",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wW1",
+   "label": "W1 window, outer wall (living + bedrooms): 2-track powder-coated aluminium/uPVC, fixed laminated fanlight on top, one fixed + one sliding 6 mm toughened pane (Grade A, sill under 500 mm), fixed fibreglass insect mesh, keyed sash stop at 125 mm on upper-floor bedrooms",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  },
+  {
+   "k": "wFixN",
+   "label": "Fixed glazing inside the house, aluminium frame, 6 mm normal glass",
+   "unit": "per sq ft",
+   "def": null,
+   "basis": ""
+  }
+ ],
+ "fixed": [
+  {
+   "k": "plinth_cft",
+   "label": "Plinth filling, per cu ft",
+   "def": null
+  },
+  {
+   "k": "entry_steps",
+   "label": "Entry steps, lump",
+   "def": null
+  },
+  {
+   "k": "front_wall_rft",
+   "label": "Front wall and gates, per running ft of plot width",
+   "def": null
+  },
+  {
+   "k": "parking_rft",
+   "label": "Parking, paths and garden, per ft of plot width",
+   "def": null
+  },
+  {
+   "k": "septic_person",
+   "label": "Septic tank and soak pit, per person",
+   "def": null
+  },
+  {
+   "k": "septic_base",
+   "label": "Septic tank, lump",
+   "def": null
+  },
+  {
+   "k": "ug_tank_l",
+   "label": "Underground tank with pump, per litre",
+   "def": null
+  },
+  {
+   "k": "roof_tank",
+   "label": "Overhead 1,000 L tank and platform, each",
+   "def": null
+  },
+  {
+   "k": "rwh",
+   "label": "Rainwater harvesting, lump",
+   "def": null
+  },
+  {
+   "k": "solar_hw_l",
+   "label": "Solar water heater, per litre",
+   "def": null
+  },
+  {
+   "k": "pv_kwp",
+   "label": "Solar PV with inverter, per kWp",
+   "def": null
+  },
+  {
+   "k": "battery_kwh",
+   "label": "Battery, per kWh",
+   "def": null
+  },
+  {
+   "k": "supply_base",
+   "label": "Main supply and meter box, lump",
+   "def": null
+  },
+  {
+   "k": "db_each",
+   "label": "Distribution board, per floor",
+   "def": null
+  },
+  {
+   "k": "ext_paint",
+   "label": "External wall paint, per sq ft",
+   "def": null
+  },
+  {
+   "k": "approvals",
+   "label": "Building approval, permits, utility connections, lump",
+   "def": null
+  },
+  {
+   "k": "chajja_rft",
+   "label": "Sunshade, per running ft of outside window",
+   "def": null
+  },
+  {
+   "k": "boundary_ft",
+   "label": "Boundary footing, per ft per boundary wall",
+   "def": null
+  },
+  {
+   "k": "soil_test",
+   "label": "Soil test, lump",
+   "def": null
+  },
+  {
+   "k": "termite_sqft",
+   "label": "Termite treatment, per sq ft of footprint",
+   "def": null
+  },
+  {
+   "k": "ramp",
+   "label": "Step-free entry ramp, lump",
+   "def": null
+  },
+  {
+   "k": "rcd_circuit",
+   "label": "RCD, surge and smoke alarm safety, per circuit",
+   "def": null
+  },
+  {
+   "k": "plumbing_safety",
+   "label": "Plumbing safety valves and openings, lump",
+   "def": null
+  },
+  {
+   "k": "pipe_box",
+   "label": "Pipe box, per stack per level",
+   "def": null
+  },
+  {
+   "k": "limiter",
+   "label": "Window opening limiter, each",
+   "def": null
+  },
+  {
+   "k": "altar",
+   "label": "Altar platform, each",
+   "def": null
+  },
+  {
+   "k": "parapet_rft",
+   "label": "Roof parapet 3'-6\" high, per running ft",
+   "def": null
+  },
+  {
+   "k": "f_sofa",
+   "label": "Sofa",
+   "def": null
+  },
+  {
+   "k": "f_bed",
+   "label": "Bed with mattress",
+   "def": null
+  },
+  {
+   "k": "f_dtable",
+   "label": "Dining table with chairs",
+   "def": null
+  },
+  {
+   "k": "f_table",
+   "label": "Coffee / side table",
+   "def": null
+  },
+  {
+   "k": "f_desk",
+   "label": "Desk and chair",
+   "def": null
+  },
+  {
+   "k": "f_tv",
+   "label": "TV unit (TV excluded)",
+   "def": null
+  },
+  {
+   "k": "f_chair",
+   "label": "Chair",
+   "def": null
+  },
+  {
+   "k": "f_rug",
+   "label": "Rug",
+   "def": null
+  },
+  {
+   "k": "f_plant",
+   "label": "Planter",
+   "def": null
+  }
+ ],
+ "pct": [
+  {
+   "k": "design",
+   "label": "Design: architect, structural, MEP drawings",
+   "def": null
+  },
+  {
+   "k": "sup",
+   "label": "Site supervision engineer",
+   "def": null
+  },
+  {
+   "k": "cont",
+   "label": "Contingency",
+   "def": null
+  },
+  {
+   "k": "esc",
+   "label": "Price escalation reserve",
+   "def": null
+  }
+ ]
+}

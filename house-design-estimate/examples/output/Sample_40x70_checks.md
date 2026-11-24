@@ -1,0 +1,65 @@
+# Design checks: 0 fail, 6 warn, 24 info, 33 ok
+
+- **WARN** [mep] Common bath sits over Ground floor Family room: sunken slab + waterproof membrane; pipes in a boxed bulkhead _(ref: AS 3740, Vastu)_ — ff
+- **WARN** [mep] 2 rainwater pipe(s) for 181 m² of roof: use at least 3 × 110 mm, hidden in the pipe boxes _(ref: AS/NZS 3500.3)_ — rf
+- **WARN** [struct] Beam span 4.71 m (4 beams, e.g. y 0'-6"–15'-11" at x 0'-6") > 4.5 m rule-of-thumb limit: engineer to design (or add a column line) _(ref: NBC 205 MRT)_
+- **WARN** [struct] Beam span 4.55 m (10 beams, e.g. x 0'-6"–15'-5" at y 0'-6") > 4.5 m rule-of-thumb limit: engineer to design (or add a column line) _(ref: NBC 205 MRT)_
+- **WARN** [vastu] Bedroom 2 in SE: avoid; ideal NW/S/SW/W _(ref: Vastu)_ — ff
+- **WARN** [vastu] Brahmasthan (centre ninth) holds Stair; keep it open/light _(ref: Vastu)_ — gf
+- **INFO** [clash] shelf gf-shelf7 meets the column projection at (15'-5", 28'-0"): notch, shorten or shift it — gf
+- **INFO** [clash] counter gf-counter19 meets the column projection at (15'-5", 53'-6"): notch, shorten or shift it — gf
+- **INFO** [clash] shelf ff-shelf7 meets the column projection at (15'-5", 28'-0"): notch, shorten or shift it — ff
+- **INFO** [clash] bed ff-bed11 meets the column projection at (35'-6", 15'-11"): notch, shorten or shift it — ff
+- **INFO** [clash] Under the first flight from riser 7 on (3'-4" long, 3'-0"+ high): room for fitted cupboards. A bench needs 4'-6" headroom — gf
+- **INFO** [light] Dining: single-sided air (E); keep doors/fanlights open or add a high vent — gf
+- **INFO** [light] Family room: single-sided air (E); keep doors/fanlights open or add a high vent — gf
+- **INFO** [light] Bedroom 3: single-sided air (E); keep doors/fanlights open or add a high vent — ff
+- **INFO** [mep] Stack S3 pipe box is on the Family room wall: drain noise. Lag the pipes (acoustic wrap / low-noise PVC) or move the box to the stair or wet side _(ref: AS/NZS 3500.2 + AS 2107 comfort)_ — gf
+- **INFO** [safety] Interconnected mains-powered smoke alarms in the hall outside the bedrooms on this level _(ref: AS 3786 / NCC H3D6)_ — gf
+- **INFO** [safety] Interconnected mains-powered smoke alarms in the hall outside the bedrooms on this level _(ref: AS 3786 / NCC H3D6)_ — ff
+- **INFO** [safety] Master bedroom window ff-W1 sill 2'-0": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Master bedroom window ff-W2 sill 2'-6": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Bedroom 2 window ff-W4 sill 2'-0": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Bedroom 2 window ff-W5 sill 2'-6": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Bedroom 3 window ff-W6 sill 2'-6": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Bedroom 4 window ff-W9 sill 2'-0": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [safety] Bedroom 4 window ff-W10 sill 2'-6": fit a 125 mm opening limiter _(ref: NCC H5D4 (11.3.7))_ — ff
+- **INFO** [struct] Indicative ULS base shear: T≈0.39 s, Ch=1.98, Z=0.3, Cd≈0.099 → V ≈ 393 kN for W ≈ 3973 kN (11 kN/m² per floor). Engineer to verify. _(ref: NBC 105:2020 §4–6 (soil D))_
+- **INFO** [vastu] Living room in SE: acceptable (ideal E/N/NE) _(ref: Vastu)_ — gf
+- **INFO** [vastu] Kitchen in NW: acceptable (ideal SE) _(ref: Vastu)_ — gf
+- **INFO** [vastu] Puja in N: acceptable (ideal NE) _(ref: Vastu)_ — gf
+- **INFO** [vastu] Bedroom 3 in E: acceptable (ideal NW/S/SW/W) _(ref: Vastu)_ — ff
+- **INFO** [vastu] Linen and store in E: acceptable (ideal S/SW/W) _(ref: Vastu)_ — ff
+- **OK** [light] Parents bedroom: cross-ventilation (S, W) — gf
+- **OK** [light] Living room: cross-ventilation (E, S) — gf
+- **OK** [light] Kitchen: cross-ventilation (N, W) — gf
+- **OK** [light] Study: cross-ventilation (E, N) — gf
+- **OK** [light] Master bedroom: cross-ventilation (S, W) — ff
+- **OK** [light] Bedroom 2: cross-ventilation (E, S) — ff
+- **OK** [light] Bedroom 4: cross-ventilation (N, W) — ff
+- **OK** [safety] Stair 21R × 160 mm, going 254 mm, 2R+G 573 mm _(ref: NCC H5D2)_ — gf
+- **OK** [safety] Stair 21R × 160 mm, going 254 mm, 2R+G 573 mm _(ref: NCC H5D2)_ — ff
+- **OK** [vastu] Parents bedroom in SW: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Parents ensuite (step-free) in W: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Dress and store in W: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Dining in E: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Stair in W: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Study in NE: ideal _(ref: Vastu)_ — gf
+- **OK** [vastu] Bed gf-bed1 in Parents bedroom: head to the south _(ref: Vastu)_ — gf
+- **OK** [vastu] Cook faces east at hob gf-hob20 _(ref: Vastu)_ — gf
+- **OK** [vastu] Altar on the E wall: devotee faces east _(ref: Vastu)_ — gf
+- **OK** [vastu] Main door on the S face covers pada 3, 4 (counted from the SE corner); good padas (3, 4) _(ref: Vastu Purusha mandala (81 padas))_ — gf
+- **OK** [vastu] Master bedroom in SW: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Master ensuite in W: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Walk-in robe in W: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Stair in W: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Common bath in E: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Bedroom 4 in NW: ideal _(ref: Vastu)_ — ff
+- **OK** [vastu] Bed ff-bed1 in Master bedroom: head to the south _(ref: Vastu)_ — ff
+- **OK** [vastu] Bed ff-bed8 in Bedroom 2: head to the south _(ref: Vastu)_ — ff
+- **OK** [vastu] Bed ff-bed11 in Bedroom 3: head to the east _(ref: Vastu)_ — ff
+- **OK** [vastu] Bed ff-bed18 in Bedroom 4: head to the east _(ref: Vastu)_ — ff
+- **OK** [vastu] Stair head in W: ideal _(ref: Vastu)_ — rf
+- **OK** [vastu] Roof tank in SW _(ref: Vastu)_ — rf
+- **OK** [vastu] Roof tank in SW _(ref: Vastu)_ — rf
+- **OK** [vastu] Septic tank towards NW _(ref: Vastu)_

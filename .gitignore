@@ -1,0 +1,30 @@
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Claude Code per-machine settings
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Packages and temporary files
+*.zip
+*.log
+*.tmp

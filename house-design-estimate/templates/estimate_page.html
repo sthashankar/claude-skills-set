@@ -1,0 +1,221 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>{{TITLE}} estimate</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky totals bar, floor tabs, one collapsible block per room with editable line items */
+:root{
+  --bg:#F5F7F8; --panel:#FFFFFF; --ink:#1B2328; --muted:#5C6870; --rule:#DDE3E7; --chip:#EAEFF2;
+  --accent:#15677F; --accent-ink:#FFFFFF; --edit:#FFF6DD; --edit-rule:#E6C46A; --warn:#A5521B; --good:#2C7A4B;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12181C; --panel:#1A2227; --ink:#E6ECEF; --muted:#9AA7AF; --rule:#2B363D; --chip:#232D33;
+  --accent:#58B7D3; --accent-ink:#0C1317; --edit:#3A3118; --edit-rule:#8A6F27; --warn:#E39A63; --good:#6CC18C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12181C; --panel:#1A2227; --ink:#E6ECEF; --muted:#9AA7AF; --rule:#2B363D; --chip:#232D33;
+  --accent:#58B7D3; --accent-ink:#0C1317; --edit:#3A3118; --edit-rule:#8A6F27; --warn:#E39A63; --good:#6CC18C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--sans);padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--panel)}
+h1,h2,h3{margin:0;font-weight:600;text-wrap:balance}
+.wrap{max-width:1180px;margin:0 auto}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--panel);border-bottom:1px solid var(--rule);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px))}
+.bar .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}
+.ttl{min-width:0}.ttl h1{font-size:19px}.ttl p{margin:0;color:var(--muted);font-size:13px}
+.kpis{display:flex;flex-wrap:wrap;gap:6px 26px;margin-left:auto}
+.kpi{min-width:0}.kpi .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.kpi .v{font:500 20px/1.2 var(--mono);font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--muted)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:12px 0}
+label.f{display:flex;gap:6px;align-items:center;font-size:14px}
+select,input,button{font:inherit;color:inherit}
+select,button.b{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:5px 10px}
+button.b{cursor:pointer}button.b:hover{border-color:var(--accent)}
+button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--rule);margin-bottom:14px}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:8px 14px;cursor:pointer;font-weight:500;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs .t{font:400 12px var(--mono);margin-left:6px;color:var(--muted)}
+details.room{background:var(--panel);border:1px solid var(--rule);border-radius:6px;margin-bottom:10px}
+details.room>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;padding:11px 14px}
+details.room>summary::-webkit-details-marker{display:none}
+details.room>summary::before{content:"▸";color:var(--muted);width:1em}
+details.room[open]>summary::before{content:"▾"}
+.rn{font-weight:600;flex:1 1 220px;min-width:0}
+.ra{color:var(--muted);font-size:13px}
+.rt{font:500 16px var(--mono);font-variant-numeric:tabular-nums;margin-left:auto}
+.rp{color:var(--muted);font:400 12px var(--mono);min-width:92px;text-align:right}
+.sc{overflow-x:auto;border-top:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;font-weight:500;padding:7px 10px;white-space:nowrap}
+td{padding:4px 10px;border-top:1px solid var(--rule);vertical-align:middle}
+th.n,td.n{text-align:right}
+td.it{min-width:260px}
+td.am{font:500 14px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.un{color:var(--muted);font-size:13px;white-space:nowrap}
+input.q,input.r,input.t{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:4px 6px;text-align:right;font:400 14px var(--mono);font-variant-numeric:tabular-nums;width:94px}
+input.t{text-align:left;font:inherit;width:100%}
+input.ov{background:var(--edit);border-color:var(--edit-rule)}
+tr.del td.it,tr.del td.am{text-decoration:line-through;color:var(--muted)}
+tr.opt td.it::after{content:"optional";margin-left:8px;font-size:11px;color:var(--muted);border:1px solid var(--rule);border-radius:3px;padding:0 4px}
+.x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px}.x:hover{color:var(--warn)}
+.foot{display:flex;flex-wrap:wrap;gap:8px;padding:8px 14px;border-top:1px solid var(--rule);align-items:center;color:var(--muted);font-size:13px}
+.add{display:grid;grid-template-columns:minmax(160px,1fr) 80px 90px 100px auto;gap:6px;padding:8px 14px;border-top:1px dashed var(--rule)}
+.add input{width:100%;min-width:0}
+.sec{background:var(--panel);border:1px solid var(--rule);border-radius:6px;margin-bottom:14px;overflow:hidden}
+.sec h3{padding:10px 14px;font-size:15px;background:var(--chip)}
+tr.sub td{background:var(--chip);font-weight:600}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink)}
+.hint{color:var(--muted);font-size:13px;max-width:80ch}
+.notice{border:1px solid var(--rule);border-left:4px solid var(--accent);background:var(--panel);padding:10px 14px;border-radius:4px;margin-bottom:14px;font-size:14px;max-width:90ch}
+textarea{width:100%;font:12px var(--mono);background:var(--panel);border:1px solid var(--rule);border-radius:4px;color:inherit;margin-top:8px}
+@media (max-width:620px){.bar{position:static}.add{grid-template-columns:1fr 1fr}.kpis{margin-left:0}.rp{display:none}}
+</style>
+<div class="bar"><div class="in">
+  <div class="ttl"><h1>{{TITLE}} estimate</h1><p>{{WHERE}}. Every quantity and rate is yours to change.</p></div>
+  <div class="kpis">
+    <div class="kpi"><div class="l">Grand total</div><div class="v" id="kTot">–</div><div class="s" id="kTotS"></div></div>
+    <div class="kpi"><div class="l">Building per sq ft</div><div class="v" id="kBld">–</div><div class="s" id="kBldS"></div></div>
+    <div class="kpi"><div class="l">All-in per sq ft</div><div class="v" id="kAll">–</div><div class="s">with extras and reserves</div></div>
+  </div>
+</div></div>
+<div class="wrap">
+<div class="ctl">
+  <label class="f" for="lvl">Finish level <select id="lvl"><option value="eco">Economy (finishes ×0.88)</option><option value="std">Standard</option><option value="pre">Premium (finishes ×1.30)</option></select></label>
+  <label class="f" for="furn"><input type="checkbox" id="furn"> Include loose furniture</label>
+  <button class="b" id="copy">Copy as CSV</button>
+  <button class="b" id="reset">Reset all my edits</button>
+  <span class="hint" id="msg" role="status"></span>
+</div>
+<div class="notice">{{NOTICE}}</div>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="view"></div>
+<textarea id="csv" rows="8" hidden readonly aria-label="CSV text"></textarea>
+<p class="hint">{{BASIS}}</p>
+</div>
+<script>
+const D=/*__D__*/null;
+const KEY='{{KEY}}';
+let S={rates:{},lines:{},added:{},wh:{},pct:{},lvl:'std',furn:false,tab:'gf'};
+try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(o)S=Object.assign(S,o);}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const $=id=>document.getElementById(id);
+const CUR=D.cur,IND=CUR.locale==='en-IN',SYM=CUR.symbol.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const MON=n=>CUR.symbol+' '+Math.round(n).toLocaleString(CUR.locale);
+const LK=n=>IND?(n>=1e7?(n/1e7).toFixed(2)+' crore':(n/1e5).toFixed(1)+' lakh'):n>=1e6?(n/1e6).toFixed(2)+' million':MON(n);
+const LV={eco:{f:.88,s:.97},std:{f:1,s:1},pre:{f:1.3,s:1.04}};
+const mult=c=>c==='s'?LV[S.lvl].s:c==='f'?LV[S.lvl].f:1;
+const rateOf=k=>S.rates[k]!==undefined?S.rates[k]:D.rates.find(r=>r.k===k).def;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const ln=(l)=>{const o=S.lines[l.id]||{};return {q:o.q!==undefined?o.q:l.qty,r:o.r!==undefined?o.r:(l.rate!==undefined?l.rate:rateOf(l.rk)),d:!!o.d,qo:o.q!==undefined,ro:o.r!==undefined};};
+const lineAmt=l=>{const v=ln(l);return v.d||(l.opt&&!S.furn)?0:v.q*v.r*mult(l.cls);};
+const addedOf=id=>S.added[id]||[];
+const addAmt=a=>a.d?0:a.qty*a.rate;
+const roomAmt=r=>r.lines.reduce((a,l)=>a+lineAmt(l),0)+addedOf(r.id).reduce((a,x)=>a+addAmt(x),0);
+const whAmt=w=>S.wh[w.k]!==undefined?S.wh[w.k]:w.def;
+const pctOf=p=>S.pct[p.k]!==undefined?S.pct[p.k]:p.def;
+function totals(){
+  let rooms=0,built=0,floors={};
+  D.floors.forEach(f=>{let t=0;f.rooms.forEach(r=>{const a=roomAmt(r);t+=a;if(!['deck','terr','court','void','roof'].includes(r.cat))built+=r.area;});floors[f.k]=t;rooms+=t;});
+  const wh=D.wh.reduce((a,w)=>a+whAmt(w),0),sub=rooms+wh,pc=D.pct.map(p=>({p,v:sub*pctOf(p)/100})),pcs=pc.reduce((a,x)=>a+x.v,0);
+  const roofsEtc=D.floors.reduce((a,f)=>a+f.rooms.filter(r=>r.cat==='roof').reduce((b,r)=>b+roomAmt(r),0),0);
+  return {rooms,built,floors,wh,sub,pc,pcs,total:sub+pcs};}
+function recalc(){
+  const T=totals();
+  $('kTot').textContent=LK(T.total);$('kTotS').textContent=MON(T.total);
+  $('kBld').textContent=MON(T.rooms/D.gross);$('kBldS').textContent=D.gross.toLocaleString(CUR.locale)+' sq ft built-up (walls included; '+Math.round(T.built).toLocaleString(CUR.locale)+' sq ft inside the walls)';
+  $('kAll').textContent=MON(T.total/D.gross);
+  document.querySelectorAll('[data-amt]').forEach(e=>{const [t,id]=e.dataset.amt.split(':');let v=0;
+    if(t==='l'){const l=findLine(id);v=l?lineAmt(l):0;}else if(t==='a'){const a=findAdded(id);v=a?addAmt(a):0;}
+    else if(t==='r'){const r=findRoom(id);v=r?roomAmt(r):0;if(e.dataset.per){e.textContent=r.area>0?MON(v/r.area)+' / sq ft':'';return;}}
+    else if(t==='f'){v=T.floors[id];}
+    else if(t==='sub')v=T.sub;else if(t==='tot')v=T.total;else if(t==='wh')v=T.wh;else if(t==='p'){v=T.pc.find(x=>x.p.k===id).v;}
+    e.textContent=MON(v);});
+  D.floors.forEach(f=>{const b=document.querySelector(`[data-tab="${f.k}"] .t`);if(b)b.textContent=LK(T.floors[f.k]);});
+  const wb=document.querySelector('[data-tab="wh"] .t');if(wb)wb.textContent=LK(T.wh+T.pcs);
+}
+const lineIdx={},addIdx={},roomIdx={};
+D.floors.forEach(f=>f.rooms.forEach(r=>{roomIdx[r.id]=r;r.lines.forEach(l=>lineIdx[l.id]=l);}));
+const findLine=id=>lineIdx[id],findRoom=id=>roomIdx[id];
+const findAdded=id=>{for(const k in S.added){const a=S.added[k].find(x=>x.id===id);if(a)return a;}return null;};
+function roomHTML(r){
+  const rows=r.lines.map(l=>{const v=ln(l);const rateEdit=l.rate===undefined;
+    return `<tr class="${v.d?'del':''} ${l.opt?'opt':''}" data-line="${l.id}"><td class="it">${esc(l.label)}</td>
+      <td class="n"><input class="q ${v.qo?'ov':''}" type="number" inputmode="decimal" step="any" value="${+v.q.toFixed(2)}" data-k="q" data-id="${l.id}" aria-label="Quantity"></td>
+      <td class="un">${esc(l.unit)}</td>
+      <td class="n"><input class="r ${v.ro?'ov':''}" type="number" inputmode="decimal" step="any" value="${v.r}" data-k="r" data-id="${l.id}" aria-label="Rate"></td>
+      <td class="n am" data-amt="l:${l.id}"></td>
+      <td><button class="x" data-del="${l.id}" title="${v.d?'Restore this line':'Remove this line'}" aria-label="${v.d?'Restore':'Remove'} line">${v.d?'↺':'×'}</button></td></tr>`;}).join('');
+  const adds=addedOf(r.id).map(a=>`<tr class="${a.d?'del':''}"><td class="it"><input class="t" value="${esc(a.label)}" data-ak="label" data-aid="${a.id}" aria-label="Item"></td>
+      <td class="n"><input class="q ov" type="number" step="any" value="${a.qty}" data-ak="qty" data-aid="${a.id}" aria-label="Quantity"></td><td class="un"><input class="t" style="width:90px" value="${esc(a.unit)}" data-ak="unit" data-aid="${a.id}" aria-label="Unit"></td>
+      <td class="n"><input class="r ov" type="number" step="any" value="${a.rate}" data-ak="rate" data-aid="${a.id}" aria-label="Rate"></td>
+      <td class="n am" data-amt="a:${a.id}"></td><td><button class="x" data-adel="${a.id}" aria-label="Remove my item">×</button></td></tr>`).join('');
+  const removed=r.lines.filter(l=>(S.lines[l.id]||{}).d).length;
+  return `<div class="sc"><table><thead><tr><th>Item</th><th class="n">Qty</th><th>Unit</th><th class="n">Rate (${SYM})</th><th class="n">Amount</th><th></th></tr></thead><tbody>${rows}${adds}</tbody></table></div>
+    <div class="add" data-add="${r.id}"><input class="t" placeholder="Add your own item, e.g. Brass door handles" data-n="label" aria-label="New item name"><input class="q" type="number" step="any" placeholder="Qty" data-n="qty" aria-label="New item quantity"><input class="t" placeholder="Unit" data-n="unit" aria-label="New item unit"><input class="r" type="number" step="any" placeholder="Rate" data-n="rate" aria-label="New item rate"><button class="b" data-addbtn="${r.id}">Add</button></div>
+    <div class="foot">${removed?`${removed} line${removed>1?'s':''} removed.`:''} Room total <b class="am" data-amt="r:${r.id}" style="font-family:var(--mono)"></b></div>`;}
+function roomBlock(r){const open=(S.open||{})[r.id];
+  return `<details class="room" data-room="${r.id}" ${open?'open':''}><summary><span class="rn">${esc(r.name)}</span><span class="ra">${r.area?Math.round(r.area)+' sq ft':''}</span><span class="rp" data-amt="r:${r.id}" data-per="1"></span><span class="rt" data-amt="r:${r.id}"></span></summary><div class="body"></div></details>`;}
+function renderFloor(k){
+  const f=D.floors.find(x=>x.k===k);
+  $('view').innerHTML=`<p class="hint">Open a room to see every item behind its number.</p>`+f.rooms.slice().sort((a,b)=>roomAmt(b)-roomAmt(a)).map(roomBlock).join('')+
+   `<div class="sec"><table><tbody><tr class="tot"><td>${f.name} total</td><td class="n am" data-amt="f:${k}"></td></tr></tbody></table></div>`;
+  document.querySelectorAll('details.room').forEach(d=>{const fill=()=>{if(d.querySelector('.body').childElementCount===0){d.querySelector('.body').innerHTML=roomHTML(roomIdx[d.dataset.room]);recalc();}};
+    if(d.open)fill();d.addEventListener('toggle',()=>{S.open=S.open||{};S.open[d.dataset.room]=d.open;save();if(d.open)fill();});});
+  recalc();}
+function renderWH(){
+  const T=totals();
+  $('view').innerHTML=`<div class="sec"><h3>Whole-house items</h3><div class="sc"><table><thead><tr><th>Item</th><th class="n">Amount (${SYM})</th></tr></thead><tbody>${D.wh.map(w=>`<tr><td class="it">${esc(w.label)}</td><td class="n"><input class="r ${S.wh[w.k]!==undefined?'ov':''}" type="number" step="1000" value="${whAmt(w)}" data-wh="${w.k}" aria-label="${esc(w.label)}"></td></tr>`).join('')}
+    <tr class="sub"><td>Rooms, roofs and whole-house items</td><td class="n am" data-amt="sub:x"></td></tr>
+    ${D.pct.map(p=>`<tr><td class="it">${esc(p.label)}, % of that subtotal</td><td class="n"><input class="r ${S.pct[p.k]!==undefined?'ov':''}" type="number" step="0.5" value="${pctOf(p)}" data-pc="${p.k}" aria-label="${esc(p.label)} percent" style="width:70px"> % <span class="am" style="font-family:var(--mono);margin-left:8px" data-amt="p:${p.k}"></span></td></tr>`).join('')}
+    <tr class="tot"><td>Grand total</td><td class="n am" data-amt="tot:x"></td></tr></tbody></table></div></div>
+    <div class="sec"><h3>Floor totals</h3><table><tbody>${D.floors.map(f=>`<tr><td>${f.name}</td><td class="n am" data-amt="f:${f.k}"></td></tr>`).join('')}</tbody></table></div>`;
+  recalc();}
+function renderRates(){
+  $('view').innerHTML=`<p class="hint">Change a rate here and every line that uses it updates, except lines where you typed your own rate.</p><div class="sec"><div class="sc"><table><thead><tr><th>Item</th><th>Unit</th><th class="n">Rate (${SYM})</th><th>Basis</th></tr></thead><tbody>${D.rates.map(r=>r.h?`<tr class="sub"><td colspan="4">${esc(r.h)}</td></tr>`:`<tr><td class="it">${esc(r.label)}</td><td class="un">${esc(r.unit)}</td><td class="n"><input class="r ${S.rates[r.k]!==undefined?'ov':''}" type="number" step="any" value="${rateOf(r.k)}" data-rate="${r.k}" aria-label="${esc(r.label)}"></td><td class="un" style="white-space:normal">${esc(r.basis)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  recalc();}
+function render(){
+  const tabs=D.floors.map(f=>[f.k,f.name]).concat([['wh','Whole house and fees'],['rates','Rates']]);
+  $('tabs').innerHTML=tabs.map(([k,n])=>`<button role="tab" data-tab="${k}" aria-selected="${S.tab===k}">${n}<span class="t"></span></button>`).join('');
+  if(S.tab==='wh')renderWH();else if(S.tab==='rates')renderRates();else renderFloor(S.tab);recalc();}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-tab]');if(t){S.tab=t.dataset.tab;save();render();return;}
+  const d=e.target.closest('[data-del]');if(d){const id=d.dataset.del;S.lines[id]=S.lines[id]||{};S.lines[id].d=!S.lines[id].d;save();rebuildRoom(d);return;}
+  const ad=e.target.closest('[data-adel]');if(ad){const id=ad.dataset.adel;for(const k in S.added){S.added[k]=S.added[k].filter(x=>x.id!==id);}save();rebuildRoom(ad);return;}
+  const ab=e.target.closest('[data-addbtn]');if(ab){const rid=ab.dataset.addbtn,box=ab.closest('.add'),g=n=>box.querySelector(`[data-n="${n}"]`).value;
+    const label=g('label').trim();if(!label){box.querySelector('[data-n="label"]').focus();return;}
+    S.added[rid]=S.added[rid]||[];S.added[rid].push({id:'A'+Date.now(),label,qty:parseFloat(g('qty'))||1,unit:g('unit')||'each',rate:parseFloat(g('rate'))||0});save();rebuildRoom(ab);}
+});
+function rebuildRoom(el){const d=el.closest('details.room');d.querySelector('.body').innerHTML=roomHTML(roomIdx[d.dataset.room]);recalc();}
+document.addEventListener('change',e=>{const i=e.target;if(!(i instanceof HTMLInputElement))return;
+  const v=parseFloat(i.value);
+  if(i.dataset.k){const id=i.dataset.id;S.lines[id]=S.lines[id]||{};if(i.value===''||!isFinite(v)){delete S.lines[id][i.dataset.k];}else S.lines[id][i.dataset.k]=v;i.classList.toggle('ov',S.lines[id][i.dataset.k]!==undefined);}
+  else if(i.dataset.aid){const a=findAdded(i.dataset.aid);if(a){a[i.dataset.ak]=['qty','rate'].includes(i.dataset.ak)?(isFinite(v)?v:0):i.value;}}
+  else if(i.dataset.wh){if(isFinite(v))S.wh[i.dataset.wh]=v;else delete S.wh[i.dataset.wh];i.classList.toggle('ov',S.wh[i.dataset.wh]!==undefined);}
+  else if(i.dataset.pc){if(isFinite(v))S.pct[i.dataset.pc]=v;else delete S.pct[i.dataset.pc];i.classList.toggle('ov',S.pct[i.dataset.pc]!==undefined);}
+  else if(i.dataset.rate){if(isFinite(v))S.rates[i.dataset.rate]=v;else delete S.rates[i.dataset.rate];i.classList.toggle('ov',S.rates[i.dataset.rate]!==undefined);}
+  else return;
+  save();recalc();});
+$('lvl').value=S.lvl;$('furn').checked=S.furn;
+$('lvl').addEventListener('change',()=>{S.lvl=$('lvl').value;save();render();});
+$('furn').addEventListener('change',()=>{S.furn=$('furn').checked;save();render();});
+let armed=false;
+$('reset').addEventListener('click',()=>{if(!armed){armed=true;$('reset').textContent='Click again to erase all my edits';setTimeout(()=>{armed=false;$('reset').textContent='Reset all my edits';},4000);return;}
+  S={rates:{},lines:{},added:{},wh:{},pct:{},lvl:'std',furn:false,tab:S.tab};save();$('lvl').value='std';$('furn').checked=false;armed=false;$('reset').textContent='Reset all my edits';render();});
+$('copy').addEventListener('click',()=>{
+  const rows=[['Floor','Room','Item','Qty','Unit','Rate','Amount']];
+  D.floors.forEach(f=>f.rooms.forEach(r=>{r.lines.forEach(l=>{const v=ln(l);if(v.d||(l.opt&&!S.furn))return;rows.push([f.name,r.name,l.label,+v.q.toFixed(2),l.unit,v.r*mult(l.cls),Math.round(lineAmt(l))]);});
+    addedOf(r.id).forEach(a=>{if(!a.d)rows.push([f.name,r.name,a.label,a.qty,a.unit,a.rate,Math.round(addAmt(a))]);});}));
+  D.wh.forEach(w=>rows.push(['Whole house','',w.label,1,'lump',whAmt(w),whAmt(w)]));
+  const T=totals();T.pc.forEach(x=>rows.push(['Fees and reserves','',x.p.label,pctOf(x.p),'%','',Math.round(x.v)]));rows.push(['Grand total','','','','','',Math.round(T.total)]);
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const ta=$('csv');ta.hidden=false;ta.value=csv;ta.select();
+  const done=()=>{$('msg').textContent='Copied. Paste into Excel or Google Sheets.';};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(csv).then(done,()=>{$('msg').textContent='Select the text below and copy it.';});else $('msg').textContent='Select the text below and copy it.';});
+render();
+</script>
+
+</body></html>

@@ -1,0 +1,35 @@
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node (Playwright for render.js)
+node_modules/
+npm-debug.log*
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Client work: keep real projects, plans and quotes out of the toolkit repo
+/out/
+/projects/
+/previews/
+/backups/
+/proposed*.json
+data/rates_*_local.json
+data/codes_*_local.json
+
+# Packages and temporary files
+*.zip
+*.log
+*.tmp

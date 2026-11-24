@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#E6E9E3;--sheet:#F8F9F6;--ink:#1C282D;--muted:#5A686D;--rule:#C9D0CA;--accent:#B4740E;--chip:#EEF1EC;
+ --f-body:Barlow,system-ui,sans-serif;--f-head:"Barlow Condensed",Barlow,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.45 var(--f-body)}
+header{padding:14px max(16px,2vw);background:var(--sheet);border-bottom:1px solid var(--rule)}
+h1{font:600 26px/1.1 var(--f-head);margin:0}h3{font:600 18px var(--f-head);margin:14px 0 6px}.sub{color:var(--muted)}
+.bar{display:flex;flex-direction:column;gap:8px;padding:10px max(16px,2vw);background:var(--sheet);border-bottom:1px solid var(--rule)}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px}.seg button,button{border:1px solid var(--rule);background:var(--chip);border-radius:6px;padding:7px 11px;font:500 14px var(--f-body);color:var(--ink);cursor:pointer;min-height:38px}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}.lbl{font:600 12px var(--f-body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-right:6px}
+label{white-space:nowrap}input[type=range]{width:120px;vertical-align:middle}
+.main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:10px;padding:10px max(16px,2vw)}
+#plan2d,#view,#wview{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+#plan2d{height:72vh;overflow:hidden}#plan2d svg{width:100%;height:100%}#view{height:72vh;position:relative}
+#sunTxt{position:absolute;left:10px;bottom:8px;background:rgba(255,255,255,.85);padding:3px 8px;border-radius:4px;font-size:13px}
+#walkPane{padding:0 max(16px,2vw) 10px}#wview{width:100%;aspect-ratio:16/9;max-height:82vh;position:relative;outline:none}
+#wHud{position:absolute;left:10px;top:8px;background:rgba(28,40,45,.75);color:#fff;padding:3px 9px;border-radius:4px;font-size:13px;z-index:2}
+#roomCard{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:6px 14px;margin:0 max(16px,2vw) 10px}
+#dTabs{position:sticky;top:0;z-index:5;display:flex;gap:4px;overflow-x:auto;padding:10px max(16px,2vw) 0;background:var(--sheet);border-bottom:1px solid var(--rule)}
+#dTabs button{flex:none;border-radius:6px 6px 0 0;border-bottom:0}#dTabs button[aria-selected=true]{background:var(--sheet);color:var(--accent)}
+.dpanel{padding:8px max(16px,2vw) 40px;background:var(--sheet)}.dpanel[hidden]{display:none}
+table{border-collapse:collapse;width:100%;margin:6px 0 12px;font-size:14px}th,td{border-bottom:1px solid var(--rule);padding:5px 7px;text-align:left;vertical-align:top}
+th{font-weight:600}.muted{color:var(--muted)}.big{font-size:17px}
+.sev{color:#fff;border-radius:4px;padding:1px 7px;font-size:12px;text-transform:uppercase}
+@media (max-width:900px){.main{grid-template-columns:1fr}#plan2d{height:60vh}#view{height:55vh}}
+#wkX{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;pointer-events:none;display:none;z-index:2}
+#walkPane.on #wkX{display:block}#walkPane.on #wview{cursor:crosshair}#wview{cursor:pointer}
+#wkX:before,#wkX:after{content:"";position:absolute;background:rgba(255,255,255,.9);box-shadow:0 0 2px #000}
+#wkX:before{left:8px;top:0;width:2px;height:18px}#wkX:after{top:8px;left:0;height:2px;width:18px}
+#wkGate{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(12,18,22,.72);color:#fff;padding:14px 20px;border-radius:10px;text-align:center;pointer-events:none;max-width:calc(100% - 32px);z-index:2}
+#wkGate b{display:block;font-size:17px;margin-bottom:4px}#walkPane.on #wkGate{display:none}
+#wkBar{position:absolute;right:10px;top:8px;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;z-index:3}
+#wkBar button{background:rgba(0,0,0,.55);color:#fff;border:0;min-height:32px;padding:5px 10px;font-size:13px}
+#wkKeys{position:absolute;left:10px;bottom:8px;background:rgba(0,0,0,.45);color:#fff;padding:5px 10px;border-radius:6px;font-size:12.5px;pointer-events:none;z-index:2}
+#walkPane:fullscreen #wview{height:100vh}
+#p2wrap{position:relative;min-width:0}
+#editBar{position:absolute;left:8px;bottom:8px;width:230px;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:13px;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+#editBar[hidden]{display:none}#editBar .er{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}#editBar button{min-height:32px;padding:4px 8px;font-size:13px}
+#cmtBar{position:absolute;right:8px;bottom:8px;width:260px;max-height:50%;overflow:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:8px 10px;font-size:13px;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+#cmtBar[hidden],#cNew[hidden]{display:none}#cmtBar .er{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}#cmtBar button{min-height:32px;padding:4px 8px;font-size:13px}
+#cmtBar textarea{width:100%;font-size:13px;margin-top:4px;box-sizing:border-box}#cList{margin:6px 0;padding-left:20px}#cList li{margin:4px 0}#cList li button{min-height:24px;padding:0 6px;font-size:11px;margin-left:4px}
+#plan2d.commenting svg{cursor:crosshair}.cpin circle{fill:#D9481A;stroke:#fff;stroke-width:2}.cpin text{fill:#fff;font:700 13px Arial,sans-serif;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+#editBar textarea{width:100%;font-size:11px;margin-top:4px}#editBar kbd{border:1px solid var(--rule);border-radius:3px;padding:0 4px;font-size:11px}
+#plan2d.editing .fu{cursor:move}#plan2d .fu.fsel rect{stroke:#E8590C;stroke-width:2.2}
+.fins input[type=color]{width:30px;height:26px;padding:0;border:1px solid var(--rule);vertical-align:middle;background:none}
+header,.bar{}.bar .row{display:flex;flex-wrap:wrap;gap:12px 34px;align-items:flex-start}.bar .row+.row{border-top:1px dashed var(--rule);padding-top:10px}
+.bar .row.col{flex-direction:column;gap:6px}.bar .line{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.cap{font:500 12.5px var(--f-body);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}.cap.inl{margin:0 0 0 10px}
+.seg.big{gap:0;border:1px solid var(--rule);border-radius:6px;overflow:hidden}.seg.big button{border:0;border-right:1px solid var(--rule);border-radius:0;display:flex;flex-direction:column;align-items:center;padding:7px 16px;min-width:84px;background:var(--sheet)}
+.seg.big button:last-child{border-right:0}.seg.big button b{font:600 18px/1.1 var(--f-head)}.seg.big button small{font-size:13px;color:var(--muted)}
+.seg.big button[aria-pressed=true]{background:var(--ink);color:#fff}.seg.big button[aria-pressed=true] small{color:#d8dde0}
+.grp label.under{display:block;margin-top:8px}input.wide{width:min(560px,100%)}#sunInfo{font-size:14px}.chks label{margin-right:4px}
+#sunChart2{position:absolute;right:10px;top:10px;background:rgba(255,255,255,.88);border:1px solid var(--rule);border-radius:8px;padding:6px 8px;font-size:12px;z-index:2}
+#sunChart2 svg{display:block}
+#eLeg{margin:14px 0 18px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);font-size:13.5px;columns:2 280px;column-gap:28px}#eLeg>b{display:block;column-span:all;margin-bottom:6px}#eLeg>div{break-inside:avoid}#eLeg i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+.fins label{margin-right:6px}
+#zoom2d{position:absolute;right:8px;top:8px;display:flex;gap:4px;z-index:3}#zoom2d button{min-height:32px;min-width:34px;padding:2px 8px;background:rgba(255,255,255,.92)}
+#plan2d{touch-action:none;cursor:grab}#plan2d.panning{cursor:grabbing}#plan2d .fu.blk rect{stroke:#C92A2A;stroke-width:2.6}
+#ePath{margin-top:6px;font-size:12.5px;line-height:1.35}#ePath.good{color:#2B7A3D}#ePath.bad{color:#C92A2A;font-weight:500}
+@media (max-width:700px){#wkBar{top:40px;left:10px;justify-content:flex-start}#wkKeys{display:none}}
+</style></head><body>
+<header><h1>{{TITLE}}</h1><div class="sub">{{SUB}}</div></header>
+<div class="bar">
+ <div class="row">
+  <div class="grp"><div class="cap">Floor</div><span class="seg big">{{LVBTN}}</span><label class="under"><input type="checkbox" id="showBelow"> Show floors below</label></div>
+  <div class="grp"><div class="cap">3D camera</div><span class="seg big">{{CAMBTN}}</span></div>
+  <div class="grp"><div class="cap">Elevation (straight-on)</div><span class="seg big">{{ELEVBTN}}</span></div>
+ </div>
+ <div class="row col">
+  <div class="cap">Sun and shadows ({{CITY}})</div>
+  <div class="line"><label><input type="checkbox" id="sunOn" checked> Real sun</label> <select id="sunM" aria-label="Month"><option value="0">21 Jan</option><option value="1">21 Feb</option><option value="2">21 Mar</option><option value="3">21 Apr</option><option value="4">21 May</option><option value="5">21 Jun</option><option value="6">21 Jul</option><option value="7">21 Aug</option><option value="8">21 Sep</option><option value="9">21 Oct</option><option value="10">21 Nov</option><option value="11">21 Dec</option></select>
+   <button id="sunPlay" aria-pressed="false">▶ Play day</button> <label><input type="checkbox" id="sunChart" checked> Sun chart</label>
+   <span class="cap inl">Lights</span><select id="lgt" aria-label="Lights"><option value="auto" selected>Auto (on after dusk)</option><option value="on">On</option><option value="off">Off</option></select></div>
+  <input type="range" id="sunT" min="0" max="1000" value="330" aria-label="Time of day, sunrise to sunset" class="wide">
+  <div id="sunInfo" class="muted"></div>
+ </div>
+ <div class="row col fins"><div class="cap">Finishes (3D)</div><div class="line"><select id="fPreset" aria-label="Colour scheme"><option value="">Colour scheme…</option><option value="def">Off-white + charcoal</option><option value="warm">Warm sand + bronze</option><option value="terra">Terracotta + black</option><option value="grey">Cool grey + white frames</option><option value="cream">Cream + teak brown</option></select>
+  <label><input type="color" id="fWall" value="#ede6da"> walls</label> <label><input type="color" id="fSlab" value="#cfc9be"> slab and roof</label> <label><input type="color" id="fSteel" value="#3d4a52"> railings</label> <label><input type="color" id="fFrame" value="#3a4045"> frames</label> <label><input type="color" id="fGlass" value="#8ec3da"> glass</label> <label><input type="color" id="fDoor" value="#b8895a"> doors</label> <label><input type="color" id="fFloor" value="#f4f2ee"> floors</label></div></div>
+ <div class="row col"><div class="cap">Show</div>
+  <div class="line chks"><label><input type="checkbox" id="tFurn" checked> Furniture</label><label><input type="checkbox" id="tEdit"> Move furniture (2D plan)</label><label><input type="checkbox" id="tNames" checked> Room names (3D)</label><label><input type="checkbox" id="tDims" checked> Dimensions</label><label><input type="checkbox" id="tVastu"> Vastu zones</label><label><input type="checkbox" id="tCols"> Columns and beams</label><label><input type="checkbox" id="tElec"> Electrical</label>
+   <label>Colour by <select id="colBy" aria-label="Colour the electrical layer by"><option value="plain">Plain</option><option value="sw">Switch</option><option value="mcb">MCB circuit</option></select></label></div>
+  <div class="line chks"><label><input type="checkbox" id="tPlumb"> Plumbing</label><label><input type="checkbox" id="tExh"> Exhaust fans and ducts</label><label><input type="checkbox" id="tLA"> Light and air</label><label><input type="checkbox" id="tSite" checked> Site (3D)</label><label><input type="checkbox" id="tCut"> Cutaway: all floors, walls cut at 4'</label><label><input type="checkbox" id="tSpread" checked> Spread floors apart</label><label><input type="checkbox" id="tXray"> X-ray</label><label><input type="checkbox" id="tCmt"> Comments</label></div>
+ </div>
+</div>
+<div class="main"><div id="p2wrap"><div id="editBar" hidden><b>Move furniture</b> <span class="muted">Drag a piece on the plan. <kbd>R</kbd> rotates, <kbd>Del</kbd> deletes, arrows nudge 1" (Shift 6").</span>
+  <div class="er"><button id="eRotL">⟲ Rotate</button><button id="eRotR">Rotate ⟳</button><button id="eDel">Delete</button><button id="eUndo">Undo</button><button id="eReset">Reset all</button><button id="eCopy">Copy my changes</button></div>
+  <div id="eInfo" class="muted">Nothing selected.</div><div id="ePath"></div><textarea id="eOut" rows="5" readonly hidden></textarea></div><div id="cmtBar" hidden><b>Comments</b> <span class="muted">Click the plan where you want to comment.</span>
+  <div id="cNew" hidden><div id="cAt" class="muted"></div><textarea id="cTxt" rows="2" placeholder="Type your comment, then Enter"></textarea><div class="er"><button id="cAdd">Add</button><button id="cCancel">Cancel</button></div></div>
+  <ol id="cList"></ol><div class="er"><button id="cCopy">Copy all for chat</button><button id="cClear">Clear all</button></div><textarea id="cOut" rows="5" readonly hidden></textarea></div><div id="zoom2d"><button id="z2in" aria-label="Zoom in">+</button><button id="z2out" aria-label="Zoom out">−</button><button id="z2fit">Fit</button></div><div id="plan2d">{{SVGS}}</div></div><div id="view"><div id="sunTxt"></div><div id="sunChart2"></div></div></div>
+<div id="roomCard"><p class="muted">Click a room on the plan to flash it in 3D, walk into it and see its details here.</p></div>
+<section id="walkPane"><div id="wview"><div id="wHud"></div><div id="wkX"></div>
+ <div id="wkBar"><button data-wlv="yard">Front yard</button>{{WLVBTN}}<button id="wkDoors">Doors: close all</button><button id="wkLights">Lights</button><button id="wkFull">⛶ Full screen</button></div>
+ <div id="wkGate"><b>Click here to walk</b>W A S D to move, mouse to look, Shift to run, Esc to stop.<br>Tap a room in the 2D plan to jump into it.</div>
+ <div id="wkKeys">WASD move · Shift run · E or click: door · O / C all doors · L lights · 1–9 floors · Esc stop</div></div></section>
+<nav id="dTabs" role="tablist">{{TABBAR}}</nav>{{PANELS}}
+<script>window.DATA={{DATA}};
+document.getElementById('dTabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;
+ document.querySelectorAll('#dTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+ document.querySelectorAll('.dpanel').forEach(p=>p.hidden=p.id!=='p_'+b.dataset.tab);});</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+{{VIEWER}}
+</script>
+</body></html>
