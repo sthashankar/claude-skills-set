@@ -105,6 +105,23 @@ Never write a placeholder into the JSON just to get past the gate.
    and trades. Cite only those codes. Concept stage only: say that structure, MEP sizing and approval need locally licensed
    professionals. NBC and AS/NZS numbers in this skill belong to the sample.
 
+## Subagent team
+Every workflow runs through four subagents, using the prompts in `references/agents/`. Spawn each as a general-purpose
+agent (researcher and reviewer may use Explore): give it that file's full text, the absolute path of this skill folder, the project folder,
+the file names and everything it needs from the chat, since it sees nothing else. Run independent lookups as parallel researchers.
+
+| Role | Prompt | Used in |
+|---|---|---|
+| Researcher | `researcher.md` | A1 and B4 (lat/long, code clauses, hazards, rates if asked) |
+| Architect | `architect.md` | A2, C1 (zoning, grid, cores, room schedule, knock-ons) |
+| Builder | `builder.md` | A3–A4, A6, B3, C2–C3, C5 (JSON, checks, renders, previews, apply) |
+| Reviewer | `reviewer.md` | after every builder step, before anything goes to the user |
+
+The main session keeps everything that touches the user: the intake gate, reading the sketch, restating requests,
+every confirmation, replies and project memory. Subagents never ask the user anything; when one reports an open
+question or a "not found", the main session asks the user. Loop builder → reviewer for must-fix issues up to 2
+rounds, then show the user what is left. Show the user only the reviewed results, and do not paste raw agent reports.
+
 ## Workflow A: new design from a typed brief
 1. **Intake gate** (above): pull what you can from the brief, ask for everything missing in one message, then **stop and
    wait**. Do not start step 2 until the answers are in. Then do the country setup and have the user confirm it.
